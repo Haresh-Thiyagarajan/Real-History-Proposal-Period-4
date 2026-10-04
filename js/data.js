@@ -698,3 +698,18 @@ FTP.siteCopy.evidenceClasses = {
   inference: "A reasonable conclusion drawn from several pieces of evidence.",
   unresolved: "The available evidence cannot settle it."
 };
+
+/* From proposal to website (shown on the Introduction page) */
+FTP.siteCopy.fromProposal = {
+  paragraphs: [
+    "This website began as my Real History Project proposal. The proposal set the research question, the four academic sources in my literature review, and the aims above. It also set the format: instead of a slideshow, I proposed a website called Follow the Patty, where the class acts as health investigators, looks at evidence cards, and decides what made the law change before I give my conclusion.",
+    "A website made sense because this is an individual project and there is not time for everyone to present in class. A website lets classmates explore the evidence on their own, before and after my presentation, and it can grow as I find more sources."
+  ],
+  mapping: [
+    { from: "My 5-minute presentation plan: hook, the outbreak, cause and effect, then and now, conclusion, then questions", to: "Presentation Mode, which follows the same timeline" },
+    { from: "“A clickable chain from the outbreak to the 1996 rules, with an evidence card and a strength rating for each step”", to: "Follow the chain and the evidence board" },
+    { from: "“A menu board and the question ‘Why is your burger cooked the way it is?’”", to: "The opening question on this page" },
+    { from: "My literature review of four sources and their limitations", to: "Historians and sources" },
+    { from: "The four things I needed to know", to: "The chapters of the investigation" }
+  ]
+};

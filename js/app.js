@@ -107,6 +107,11 @@
         </div>
         <ol class="objective-list">${needToKnow}</ol>
       </div></section>
+      <section class="section-wrap" id="from-proposal"><div class="section-inner">${sectionHead('FROM PROPOSAL TO WEBSITE', 'How my research proposal became this site')}
+        <div class="reading-column">${COPY.fromProposal.paragraphs.map(p => `<p>${rich(p)}</p>`).join('')}
+          <ol class="objective-list">${COPY.fromProposal.mapping.map((m, i) => `<li><span class="objective-num">0${i + 1}</span><p>${rich(m.from)}</p><span class="objective-status">${rich(m.to)}</span></li>`).join('')}</ol>
+        </div>
+      </div></section>
       <section class="section-wrap"><div class="section-inner">${sectionHead('EVIDENCE KEY', 'Four labels, four different kinds of claim', 'The labels describe what kind of claim is being made—not whether a reader has to agree.')}
         <div class="key-grid">${classes}</div>
       </div></section>
