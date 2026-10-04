@@ -7,12 +7,12 @@
   const COPY = FTP.siteCopy;
   const PAGE = document.body.dataset.page || 'intro';
   const PAGES = [
-    { id: 'intro', title: 'Introduction', href: 'index.html', img: 'img/micrograph-o157h7.webp', alt: 'Grayscale scanning electron micrograph of E. coli O157:H7.' },
-    { id: 'outbreak', title: 'The outbreak', href: 'outbreak.html', img: 'img/mmwr-1993-p258.webp', alt: "First page of the CDC's April 1993 outbreak update." },
-    { id: 'evidence', title: 'The evidence', href: 'evidence.html', img: 'img/mmwr-1993-figure1.webp', alt: 'CDC Figure 1, Washington cases by week of onset.' },
-    { id: 'change', title: 'Change and continuity', href: 'change.html', img: 'img/federal-register-1996-p38806.webp', alt: 'First page of the 1996 Federal Register rule.' },
-    { id: 'historians', title: 'Historians and sources', href: 'historians.html', img: 'img/fsis-1994-backgrounder.webp', alt: 'First page of the FSIS Backgrounder, May 1994.' },
-    { id: 'conclusion', title: 'Conclusion', href: 'conclusion.html', img: 'img/usda-meat-inspection-1999.webp', alt: 'Tagged beef carcasses in cold storage.' }
+    { id: 'intro', title: 'Introduction', href: 'index.html', img: 'img/bacteria.webp', alt: 'Grayscale scanning electron micrograph of E. coli O157:H7.' },
+    { id: 'outbreak', title: 'The outbreak', href: 'outbreak.html', img: 'img/cdc-report.webp', alt: "First page of the CDC's April 1993 outbreak update." },
+    { id: 'evidence', title: 'The evidence', href: 'evidence.html', img: 'img/cdc-chart.webp', alt: 'CDC Figure 1, Washington cases by week of onset.' },
+    { id: 'change', title: 'Change and continuity', href: 'change.html', img: 'img/rule-1996.webp', alt: 'First page of the 1996 Federal Register rule.' },
+    { id: 'historians', title: 'Historians and sources', href: 'sources.html', img: 'img/usda-1994.webp', alt: 'First page of the FSIS Backgrounder, May 1994.' },
+    { id: 'conclusion', title: 'Conclusion', href: 'conclusion.html', img: 'img/inspection-1999.webp', alt: 'Tagged beef carcasses in cold storage.' }
   ];
   const SOURCE_BY_ID = Object.fromEntries((FTP.sources || []).map(source => [source.id, source]));
   const EVIDENCE_BY_ID = Object.fromEntries((FTP.evidence || []).map(item => [item.id, item]));
@@ -42,13 +42,13 @@
   const verifyFlag = item => item && item.verify ? '<span class="verify-flag">Needs source verification</span>' : '';
   const sourceFor = id => id ? SOURCE_BY_ID[id] : null;
   const sourceLabel = id => sourceFor(id)?.short || 'Source not listed';
-  const sourceRef = id => id ? `<a class="source-ref" href="historians.html#src-${esc(id)}">${esc(sourceLabel(id))}</a>` : '<span class="source-ref unresolved">No source listed</span>';
+  const sourceRef = id => id ? `<a class="source-ref" href="sources.html#src-${esc(id)}">${esc(sourceLabel(id))}</a>` : '<span class="source-ref unresolved">No source listed</span>';
   const topicHref = item => {
     const map = {
       outbreak: 'outbreak.html#outbreak-section', map: 'outbreak.html#map',
       chain: `evidence.html#chain-${item.link || 1}`, timeline: `change.html#period-${item.period || 'p4'}`,
       evidence: `evidence.html#ev-${item.open || 'E12'}`, thenNow: 'change.html#then-now',
-      historians: 'historians.html#literature', continuity: 'change.html#continuity',
+      historians: 'sources.html#literature', continuity: 'change.html#continuity',
       thennow: 'change.html#then-now',
       conclusion: 'conclusion.html#conclusion'
     };
@@ -84,7 +84,7 @@
             <p class="research-question-inline"><span class="claim-chip">The question</span> ${rich(COPY.researchQuestion)}</p>
             <div class="cta-row"><a class="button-primary" href="outbreak.html">Begin the investigation <span class="arrow" aria-hidden="true">→</span></a></div>
           </div>
-          <figure class="hero-art"><img fetchpriority="high" src="img/micrograph-o157h7.webp" alt="E. coli O157:H7 in a grayscale scanning electron micrograph, magnified 10,961 times."><figcaption>${rich(COPY.imageCaptions.micrograph)}</figcaption></figure>
+          <figure class="hero-art"><img fetchpriority="high" src="img/bacteria.webp" alt="E. coli O157:H7 in a grayscale scanning electron micrograph, magnified 10,961 times."><figcaption>${rich(COPY.imageCaptions.micrograph)}</figcaption></figure>
         </div>
       </section>
       <section class="menu-hook" id="hook"><div class="menu-hook-inner">
@@ -158,19 +158,19 @@
     const steps = FTP.mapSteps.map((step, index) => `<li><button type="button" data-map-step="${index}" ${index === 0 ? 'aria-current="true"' : ''}><span class="map-step-date">${rich(step.date)}</span><span><strong>${rich(step.title)}</strong><small>${rich(step.text)}</small><span class="exhibit-links"><span class="exhibit-link">${esc(step.evidence)}</span></span></span></button></li>`).join('');
     return `${chapterIntro('02', 'The outbreak', 'A report reached Washington. An investigation moved from sick children to one chain, one product and four states.', 'January 1993')}
       <section class="section-wrap"><div class="section-inner"><div class="plate-layout">
-        ${imageFigure('img/mmwr-1993-p258.webp', "First page of the CDC's April 1993 outbreak update, printed page 258.", COPY.imageCaptions.mmwr258)}
+        ${imageFigure('img/cdc-report.webp', "First page of the CDC's April 1993 outbreak update, printed page 258.", COPY.imageCaptions.mmwr258)}
         <div class="plate-note"><p class="eyebrow red">A document in the record</p><h2 class="serif-title">The first federal page</h2><p>The CDC report names the restaurant chain only as “chain A.” The document does not name a city or hospital for the first physician report.</p><div class="meta-line">${sourceRef('mmwr-update')} ${label('verified')}</div></div>
       </div></div></section>
       <section class="section-wrap" id="outbreak-section"><div class="section-inner">${sectionHead('SIX CASE FILES', 'The investigation, one decision at a time', 'Open each file to see the date, the place, the evidence, and how strongly the CDC’s 1993 reports support it.')}</div>
         <div class="case-timeline"><div class="case-track">${caseFilesMarkup()}</div></div><p class="timeline-tip">On a desktop, scroll to move across the files. On a phone, the files read vertically.</p>
       </section>
       <section class="section-wrap"><div class="section-inner">${sectionHead('THE EPIDEMIC CURVE', 'More cases began in the week of 17 January than in any other week', COPY.curveText)}
-        <div class="curve-feature">${imageFigure('img/mmwr-1993-figure1.webp', 'CDC Figure 1: cases of E. coli O157:H7 by week of onset in Washington.', COPY.imageCaptions.epidemicCurve, 'document-plate-wide curve-plate')}
-          <div><blockquote>“Onsets of illness peaked from January 17 through January 20.”</blockquote><p class="source-line">CDC, MMWR, vol. 42, no. 14, p. 259.</p><a class="text-link" href="img/mmwr-1993-p260.webp" data-lightbox-src="img/mmwr-1993-p260.webp" data-lightbox-alt="CDC Figure 2 showing case curves in Idaho, California, and Nevada." data-lightbox-caption="${esc(COPY.imageCaptions.mmwr260)}">Open the Idaho, California and Nevada curves →</a></div>
+        <div class="curve-feature">${imageFigure('img/cdc-chart.webp', 'CDC Figure 1: cases of E. coli O157:H7 by week of onset in Washington.', COPY.imageCaptions.epidemicCurve, 'document-plate-wide curve-plate')}
+          <div><blockquote>“Onsets of illness peaked from January 17 through January 20.”</blockquote><p class="source-line">CDC, MMWR, vol. 42, no. 14, p. 259.</p><a class="text-link" href="img/cdc-charts-states.webp" data-lightbox-src="img/cdc-charts-states.webp" data-lightbox-alt="CDC Figure 2 showing case curves in Idaho, California, and Nevada." data-lightbox-caption="${esc(COPY.imageCaptions.mmwr260)}">Open the Idaho, California and Nevada curves →</a></div>
         </div>
       </div></section>
       <section class="section-wrap" id="map"><div class="section-inner">${sectionHead('STATE-LEVEL TRACEBACK', 'The outbreak moved beyond Washington', 'No city dots appear: the sources gathered do not identify restaurant locations.')}
-        <div class="map-layout"><div class="map-frame">${mapSvg('outbreak', ['WA'])}<p class="source-line">State outlines: ${esc(window.FTP_MAP_SOURCE || 'us-atlas states-albers-10m.json')}. Counts/source: ${esc(COPY.mapSource)}</p></div>
+        <div class="map-layout"><div class="map-frame">${mapSvg('outbreak', ['WA'])}<p class="source-line">State outlines: ${esc(window.FTP_MAP_SOURCE || 'us-atlas us-states.json')}. Counts/source: ${esc(COPY.mapSource)}</p></div>
           <div><ol class="map-step-list">${steps}</ol>${countTable()}<p class="source-line">ID count is culture-confirmed; other state counts met the case definition. The dashed traceback lines are abstract and do not identify a location.</p></div>
         </div>
       </div></section>`;
@@ -182,7 +182,7 @@
     return `<details class="exhibit-file" id="ev-${esc(item.id)}" data-exhibit="${esc(item.id)}" data-type="${esc(item.sourceType)}" data-strength="${esc(item.strength)}" data-class="${esc(item.cls)}" data-category="${esc(item.category)}">
       <summary><span class="exhibit-id">${esc(item.id)}<br><small>${esc(item.date)}</small></span><span class="exhibit-title">${rich(item.title)}</span><span class="exhibit-summary-meta">${label(item.cls)} ${stamp(item.strength)}${verifyFlag(item)}</span></summary>
       <div class="exhibit-body"><p><strong>Evidence</strong><br>${rich(item.description)}</p><p><strong>What it tells us</strong><br>${rich(item.tells)}</p><p><strong>Why it matters</strong><br>${rich(item.matters)}</p><p><strong>Claim it supports</strong><br>${rich(item.claim)}</p><p><strong>Limitations</strong><br>${rich(item.limits)}</p>
-        <p class="exhibit-source"><strong>Full MLA source</strong><br>${source ? richMLA(source.mla) : 'No source found yet. This is a gap in the research.'}${source ? ` <a href="historians.html#src-${esc(source.id)}">Source record ↗</a>` : ''}</p>
+        <p class="exhibit-source"><strong>Full MLA source</strong><br>${source ? richMLA(source.mla) : 'No source found yet. This is a gap in the research.'}${source ? ` <a href="sources.html#src-${esc(source.id)}">Source record ↗</a>` : ''}</p>
         <div class="meta-line"><span class="claim-chip">${esc(item.sourceType)}</span><span class="claim-chip">${esc(item.category)}</span>${evidenceLinks}</div>${verifyFlag(item)}
       </div>
     </details>`;
@@ -253,17 +253,17 @@
   function pageChange() {
     return `${chapterIntro('04', 'Change and continuity', 'Rules changed in stages. The outbreak mattered—but the record also shows work, science and pressure already in motion.', '1993—1996')}
       <section class="section-wrap"><div class="section-inner"><div class="plate-layout">
-        ${imageFigure('img/federal-register-1996-p38806.webp', 'First page of the July 25, 1996 Federal Register Pathogen Reduction / HACCP final rule.', COPY.imageCaptions.federalRegister)}
+        ${imageFigure('img/rule-1996.webp', 'First page of the July 25, 1996 Federal Register Pathogen Reduction / HACCP final rule.', COPY.imageCaptions.federalRegister)}
         <div class="plate-note"><p class="eyebrow red">A regulatory turning point</p><h2 class="serif-title">A final rule, not an Act</h2><p>The official title is the USDA <em>Pathogen Reduction; Hazard Analysis and Critical Control Point (HACCP) Systems final rule</em>, dated 25 July 1996.</p><div class="meta-line">${sourceRef('fsis-haccp-1996')} ${label('verified')}</div></div>
       </div></div></section>
       <section class="section-wrap" id="timeline"><div class="section-inner">${sectionHead('FIVE PERIODS', 'Compare the same questions across time', 'Select a period. Blank cells say “No entry yet”; they are not filled by guesswork.')}${periodTabs()}</div></section>
       <section class="section-wrap" id="then-now"><div class="section-inner">${sectionHead('THEN / NOW', 'Six subjects. Six markers of change', 'Each side keeps its own evidence trail.')}
         <div class="then-now-list">${thenNowRows()}</div>
-        <figure class="document-plate document-plate-wide safe-label-plate"><img loading="lazy" src="img/fsis-1994-safe-handling-label.webp" alt="Safe Handling Instructions label box shown on page 2 of the FSIS Backgrounder."><figcaption>${rich(COPY.imageCaptions.safeHandlingLabel)}</figcaption></figure>
+        <figure class="document-plate document-plate-wide safe-label-plate"><img loading="lazy" src="img/label-1994.webp" alt="Safe Handling Instructions label box shown on page 2 of the FSIS Backgrounder."><figcaption>${rich(COPY.imageCaptions.safeHandlingLabel)}</figcaption></figure>
       </div></section>
       <section class="section-wrap" id="continuity"><div class="section-inner">${sectionHead('WHAT DIDN’T CHANGE?', 'Make a guess before opening the record', 'Choose Changed, Continued or Not sure, then check the evidence.')}
         <div class="continuity-list">${continuityItems()}</div>
-        <figure class="document-plate document-plate-wide" style="max-width:52rem;margin:2rem auto 0"><img loading="lazy" src="img/usda-meat-inspection-1999.webp" alt="Tagged beef carcasses in cold storage."><figcaption>${rich(COPY.imageCaptions.usdaInspection)}</figcaption></figure>
+        <figure class="document-plate document-plate-wide" style="max-width:52rem;margin:2rem auto 0"><img loading="lazy" src="img/inspection-1999.webp" alt="Tagged beef carcasses in cold storage."><figcaption>${rich(COPY.imageCaptions.usdaInspection)}</figcaption></figure>
       </div></section>
       <section class="section-wrap" id="forces"><div class="section-inner">${sectionHead('WHO REALLY CAUSED THE CHANGE?', 'Weigh the six threads', 'The scale records your judgment locally in this browser. The evidence and counter-evidence remain visible beside every choice.')}
         <div class="weight-tally" id="weight-tally"></div><div class="forces-grid" id="forces-grid">${forceCards()}</div>
@@ -298,9 +298,9 @@
 
   function sourceGallery() {
     const docs = [
-      { src: 'img/mmwr-1993-p258.webp', alt: "First page of the CDC's April 1993 outbreak update, printed page 258.", caption: COPY.imageCaptions.mmwr258, title: 'CDC MMWR · p. 258' },
-      { src: 'img/fsis-1994-backgrounder.webp', alt: 'First page of the FSIS Backgrounder, May 1994.', caption: COPY.imageCaptions.fsisBackgrounder, title: 'FSIS Backgrounder · May 1994' },
-      { src: 'img/federal-register-1996-p38806.webp', alt: 'First page of the 1996 Federal Register final rule.', caption: COPY.imageCaptions.federalRegister, title: 'Federal Register · p. 38806' }
+      { src: 'img/cdc-report.webp', alt: "First page of the CDC's April 1993 outbreak update, printed page 258.", caption: COPY.imageCaptions.mmwr258, title: 'CDC MMWR · p. 258' },
+      { src: 'img/usda-1994.webp', alt: 'First page of the FSIS Backgrounder, May 1994.', caption: COPY.imageCaptions.fsisBackgrounder, title: 'FSIS Backgrounder · May 1994' },
+      { src: 'img/rule-1996.webp', alt: 'First page of the 1996 Federal Register final rule.', caption: COPY.imageCaptions.federalRegister, title: 'Federal Register · p. 38806' }
     ];
     return docs.map(doc => `<button class="gallery-item" type="button" data-lightbox-src="${doc.src}" data-lightbox-alt="${esc(doc.alt)}" data-lightbox-caption="${esc(doc.caption)}"><img loading="lazy" src="${doc.src}" alt="${esc(doc.alt)}"><span>${esc(doc.title)} · Public domain</span></button>`).join('');
   }
@@ -355,7 +355,7 @@
         <div class="edit-toolbar"><button type="button" class="button-secondary" data-edit-conclusion>Edit conclusion</button><button type="button" class="button-secondary" data-restore-conclusion>Restore original wording</button><span class="source-line" id="edit-status" aria-live="polite">Your edits stay in this browser.</span></div>
         ${visitorRecord()}
       </div></section>
-      <section class="last-question"><div class="last-question-inner"><p class="eyebrow">The last question</p><h2>${rich(FTP.lastQuestion.q)}</h2><p>${rich(FTP.lastQuestion.a)}</p><figure class="last-question-image"><img loading="lazy" src="img/micrograph-o157h7.webp" alt="Grayscale scanning electron micrograph of E. coli O157:H7 bacteria."><figcaption>${rich(COPY.imageCaptions.micrograph)}</figcaption></figure></div></section>`;
+      <section class="last-question"><div class="last-question-inner"><p class="eyebrow">The last question</p><h2>${rich(FTP.lastQuestion.q)}</h2><p>${rich(FTP.lastQuestion.a)}</p><figure class="last-question-image"><img loading="lazy" src="img/bacteria.webp" alt="Grayscale scanning electron micrograph of E. coli O157:H7 bacteria."><figcaption>${rich(COPY.imageCaptions.micrograph)}</figcaption></figure></div></section>`;
   }
 
   const BUILDERS = { intro: pageIntro, outbreak: pageOutbreak, evidence: pageEvidence, change: pageChange, historians: pageHistorians, conclusion: pageConclusion };

@@ -9,14 +9,14 @@ const vm = require('node:vm');
 const path = require('node:path');
 
 const root = path.resolve(__dirname, '..');
-const sourceFiles = ['js/data.js', 'js/map-paths.js', 'js/app.js'];
+const sourceFiles = ['js/data.js', 'js/map.js', 'js/app.js'];
 const scripts = sourceFiles.map(file => fs.readFileSync(path.join(root, file), 'utf8'));
 const routes = [
   ['index.html', 'intro'],
   ['outbreak.html', 'outbreak'],
   ['evidence.html', 'evidence'],
   ['change.html', 'change'],
-  ['historians.html', 'historians'],
+  ['sources.html', 'historians'],
   ['conclusion.html', 'conclusion']
 ];
 const note = '<noscript class="noscript-note"><p>This reading version includes the full chapter text, evidence and citations below. Votes, filters, saved weights, lightbox, animations and presentation controls require JavaScript. Saved responses stay in this browser.</p></noscript>\n';
